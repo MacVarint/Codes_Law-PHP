@@ -1,15 +1,27 @@
 <?php
 include_once "DatabaseCredentials.php";
 $search = "";
+if(isset($_POST['name']))
+{
+    $_POST['name'] = '*';
+}
+// WIP
+
+
 /** @var $conn */
 $runs = $conn->query("
 SELECT accounts.Name, accounts.idaccount, statsOfRun.account_idaccount, statsOfRun.minutes, statsOfRun.seconds, statsOfRun.milliseconds, statsOfRun.terminalsHacked, statsOfRun.doorsOpened, statsOfRun.level 
 FROM accounts 
-JOIN statsOfRun ON accounts.idaccount = statsOfRun.account_idaccount;");
+JOIN statsOfRun ON accounts.idaccount = statsOfRun.account_idaccount
+WHERE accounts.Name = '" . $_POST['name'] . "';");
 /*WHERE accounts.Name = " . $search . "*/
-echo "<style>
-.border{border: solid black 1px}
-</style>";
+echo '<form action="CodesLawSite.php" method="post">';
+echo 'Name: <input type="text" name="name"><br>';
+echo '<input type="submit">';
+echo '</form>';
+echo '<style>';
+echo '.border{border: solid black 1px}';
+echo '</style>';
 echo "<table class='border'>";
 echo "<tr>
         <th class='border'>Name</th>

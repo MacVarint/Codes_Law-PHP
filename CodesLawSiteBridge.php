@@ -7,6 +7,13 @@ SELECT accounts.Name, accounts.idaccount, statsOfRun.account_idaccount, statsOfR
 FROM accounts 
 JOIN statsOfRun ON accounts.idaccount = statsOfRun.account_idaccount;");
 /*WHERE accounts.Name = " . $search . "*/
+
+echo '
+<form action="CodesLawSiteBridge.php" method="post">
+Name: <input type="text" name="name"><br>
+E-mail: <input type="text" name="email"><br>
+<input type="submit">
+</form>';
 echo "<style>
 .border{border: solid black 1px}
 </style>";
