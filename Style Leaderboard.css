@@ -1,0 +1,13 @@
+body, input {
+    background-color: black;
+}
+input, th , td, p {
+    color: #1AFF00;
+}
+input {
+    border: 2px #1AFF00 solid;
+    outline: #1AFF00;
+}
+.border{
+    border: solid #1AFF00 1px
+}

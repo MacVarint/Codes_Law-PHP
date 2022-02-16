@@ -1,27 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Codes Law Leaderboard</title>
+    <link rel="stylesheet" href="Style%20Leaderboard.css">
+</head>
+<body>
 <?php
 include_once "DatabaseCredentials.php";
-$search = "";
-if(isset($_POST['name']))
-{
-    $_POST['name'] = '*';
-}
-// WIP
-
-
 /** @var $conn */
-$runs = $conn->query("
-SELECT accounts.Name, accounts.idaccount, statsOfRun.account_idaccount, statsOfRun.minutes, statsOfRun.seconds, statsOfRun.milliseconds, statsOfRun.terminalsHacked, statsOfRun.doorsOpened, statsOfRun.level 
-FROM accounts 
-JOIN statsOfRun ON accounts.idaccount = statsOfRun.account_idaccount
-WHERE accounts.Name = '" . $_POST['name'] . "';");
+$search = "";
+if (!isset($_POST['name']) && !isset($_POST['level']))
+{
+    $_POST['name'] = "";
+    $_POST['level'] = "";
+}
+$level =  intval($_POST['level']);
+if($_POST['name'] == "" && $_POST['level'] == "")
+{
+    $runs = $conn->query("
+    SELECT accounts.Name, accounts.idaccount, statsOfRun.account_idaccount, statsOfRun.minutes, statsOfRun.seconds, statsOfRun.milliseconds, statsOfRun.terminalsHacked, statsOfRun.doorsOpened, statsOfRun.level 
+    FROM accounts 
+    JOIN statsOfRun ON accounts.idaccount = statsOfRun.account_idaccount
+    ORDER BY minutes, seconds, milliseconds, terminalsHacked, doorsOpened, level ASC
+    LIMIT 100;");
+}
+else if ($_POST['name'] != "" && $_POST['level'] != "")
+{
+    $runs = $conn->query("
+    SELECT accounts.Name, accounts.idaccount, statsOfRun.account_idaccount, statsOfRun.minutes, statsOfRun.seconds, statsOfRun.milliseconds, statsOfRun.terminalsHacked, statsOfRun.doorsOpened, statsOfRun.level 
+    FROM accounts 
+    JOIN statsOfRun ON accounts.idaccount = statsOfRun.account_idaccount
+    WHERE accounts.Name = '" . $_POST['name'] . "' AND statsOfRun.level = '" . $level . "'
+    ORDER BY minutes, seconds, milliseconds, terminalsHacked, doorsOpened, level ASC;");
+}
+else if ($_POST['name'] != "")
+{
+    $runs = $conn->query("
+    SELECT accounts.Name, accounts.idaccount, statsOfRun.account_idaccount, statsOfRun.minutes, statsOfRun.seconds, statsOfRun.milliseconds, statsOfRun.terminalsHacked, statsOfRun.doorsOpened, statsOfRun.level 
+    FROM accounts 
+    JOIN statsOfRun ON accounts.idaccount = statsOfRun.account_idaccount
+    WHERE accounts.Name = '" . $_POST['name'] . "'
+    ORDER BY minutes, seconds, milliseconds, terminalsHacked, doorsOpened, level ASC;");
+}
+else if ($_POST['level'] != "")
+{
+    $runs = $conn->query("
+    SELECT accounts.Name, accounts.idaccount, statsOfRun.account_idaccount, statsOfRun.minutes, statsOfRun.seconds, statsOfRun.milliseconds, statsOfRun.terminalsHacked, statsOfRun.doorsOpened, statsOfRun.level 
+    FROM accounts 
+    JOIN statsOfRun ON accounts.idaccount = statsOfRun.account_idaccount
+    WHERE statsOfRun.level = '" . $_POST['level'] . "'
+    ORDER BY minutes, seconds, milliseconds, terminalsHacked, doorsOpened, level ASC
+    LIMIT 100;");
+}
 /*WHERE accounts.Name = " . $search . "*/
 echo '<form action="CodesLawSite.php" method="post">';
-echo 'Name: <input type="text" name="name"><br>';
+echo '<p>Name: </p><input type="text" name="name" value= "' . $_POST["name"] . '"><br><br>';
+echo '<p>Level: </p><input type="text" name="level" value= "' . $_POST["level"] . '"><br><br>';
 echo '<input type="submit">';
-echo '</form>';
-echo '<style>';
-echo '.border{border: solid black 1px}';
-echo '</style>';
+echo '</form><br>';
 echo "<table class='border'>";
 echo "<tr>
         <th class='border'>Name</th>
@@ -45,3 +82,7 @@ foreach ($runs as $run) {
     echo "</tr>";
 }
 echo "</table>";
+unset($_POST);
+$_POST = array();
+?>
+</body>
