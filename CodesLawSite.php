@@ -53,7 +53,6 @@ else if ($_POST['level'] != "")
     ORDER BY minutes, seconds, milliseconds, terminalsHacked, doorsOpened, level ASC
     LIMIT 100;");
 }
-/*WHERE accounts.Name = " . $search . "*/
 echo '<form action="CodesLawSite.php" method="post">';
 echo '<p>Name: </p><input type="text" name="name" value= "' . $_POST["name"] . '"><br><br>';
 echo '<p>Level: </p><input type="text" name="level" value= "' . $_POST["level"] . '"><br><br>';
