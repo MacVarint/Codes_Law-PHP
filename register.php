@@ -1,8 +1,9 @@
 <?php
 
 include_once 'DatabaseCredentials.php';
-
-
+$name = $_POST["name"];
+$password = $_POST["password"];
+$email = $_POST["email"];
 //$columns = [
 //    "Name",
 //];
@@ -14,26 +15,30 @@ include_once 'DatabaseCredentials.php';
 
 
 /** @var $conn */
-$nameCheck = $conn->query('SELECT * FROM accounts WHERE Name = "' . $_POST["name"] . '";');
+$nameCheck = $conn->query('SELECT * FROM accounts WHERE Name = "' . $name . '";');
 
-$mailCheck = $conn->query('SELECT * FROM accounts WHERE EMail = "' . $_POST["email"] . '";');
+$mailCheck = $conn->query('SELECT * FROM accounts WHERE EMail = "' . $email . '";');
 
 if ($nameCheck->rowCount() == 0 and $mailCheck->rowCount() == 0)
 {
 //        $conn->query('INSERT INTO accounts (Name, hash, Email)
 //        VALUES ("' . $_POST["name"] . '", "' . $_POST["password"] . '", "' . $_POST["eMail"] . '");');
+    $salt = "\$5\$rounds=5000\$" . "MarcIsMarc" . $name . "\$";
+    $hash = crypt($password, $salt);
 
-        $columns = [
-            "Name",
-            "hash",
-            "Email"
-        ];
-
-        $stmt = $conn->prepare("INSERT INTO accounts (" . implode(', ', $columns) . ") VALUES (:firstValue, :secondValue, :thirdValue)") or die("Error preparing.");
+    $columns = [
+        "Name",
+        "hash",
+        "salt",
+        "Email"
+    ];
+    $stmt = $conn->prepare("INSERT INTO accounts (" . implode(', ', $columns) . ") VALUES (:firstValue, :secondValue, :thirdValue, :fourthValue)") or die("Error preparing.");
         $stmt->execute([
-            ":firstValue" => $_POST["name"],
-            ":secondValue" => $_POST["password"],
-            ":thirdValue" => $_POST["email"]
+            ":firstValue" => $name,
+            ":secondValue" => $hash,
+            ":thirdValue" => $salt,
+            ":fourthValue" => $email
         ]) or die ("Error executing. " . $stmt->errorCode());
+
 }
 ?>
