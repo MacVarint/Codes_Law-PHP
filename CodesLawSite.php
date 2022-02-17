@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="Style%20Leaderboard.css">
 </head>
 <body>
+<div id="floatLeft">
 <?php
 include_once "DatabaseCredentials.php";
 /** @var $conn */
@@ -54,9 +55,9 @@ else if ($_POST['level'] != "")
     LIMIT 100;");
 }
 echo '<form action="CodesLawSite.php" method="post">';
-echo '<p>Name: </p><input type="text" name="name" value= "' . $_POST["name"] . '"><br><br>';
-echo '<p>Level: </p><input type="text" name="level" value= "' . $_POST["level"] . '"><br><br>';
-echo '<input type="submit">';
+echo '<p>Name: </p><input class="margin" type="text" name="name" value= "' . $_POST["name"] . '"><br><br>';
+echo '<p>Level: </p><input class="margin" type="text" name="level" value= "' . $_POST["level"] . '"><br><br>';
+echo '<input class="button" type="submit">';
 echo '</form><br>';
 echo "<table class='border'>";
 echo "<tr>
@@ -84,4 +85,8 @@ echo "</table>";
 unset($_POST);
 $_POST = array();
 ?>
+</div>
+<div id="floatRight">
+    <button class="border button" onclick="location.href='CodesLawSiteBridge.php'">Login</button>
+</div>
 </body>
