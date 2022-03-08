@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <head>
     <meta charset="UTF-8">
     <title>Codes Law Leaderboard</title>

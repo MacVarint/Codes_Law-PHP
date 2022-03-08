@@ -8,9 +8,9 @@
     <div class="center">
         <div class="center center2">
             <br><br><br><br><br><br>
-            <form action="CodesLawSiteOptions.php" method="post">
-            <label>Email: <input class="margin text" type="text" name="email"></label><br><br>
-            <label>Password: <input class="margin text" type="text" name="password"></label><br><br>
+            <form action="checkLogin.php" method="post">
+            <label>Email: <input class="margin text" type="email" name="eMail"></label><br><br>
+            <label>Password: <input class="margin text" type="password" name="password"></label><br><br>
             <input class="button" type="submit">
             </form><br>
         </div>
