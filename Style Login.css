@@ -1,15 +1,18 @@
 body, input, button {
     background-color: black;
 }
-input, th , td, p, button {
+input, th , td, p, label, button {
     color: #1AFF00;
+}
+.text {
+    font-size: 2vw;
 }
 input {
     width: 100%;
     height: 10%;
 }
-p {
-    margin: 0px;
+p, label {
+    margin: 0;
 }
 .margin {
     margin: 1em 0 1em 0;
@@ -24,7 +27,13 @@ input {
 #floatLeft {
     float: left;
 }
+.floatLeft {
+    float: left;
+}
 #floatRight {
+    float: right;
+}
+.floatRight {
     float: right;
 }
 .button {
@@ -56,4 +65,10 @@ input {
 }
 .center2 {
     border: none;
+    height: 90%;
+}
+.bottom{
+    vertical-align: bottom;
+    float: bottom;
+    bottom: 0;
 }

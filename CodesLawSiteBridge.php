@@ -7,12 +7,14 @@
 <div class="centerChild">
     <div class="center">
         <div class="center center2">
-            echo '<form action="CodesLawSiteLoggedIn.php" method="post">';
-            echo '<p>Email: </p><input class="margin" type="text" name="email"><br><br>';
-            echo '<p>Password: </p><input class="margin" type="text" name="password"><br><br>';
-            echo '<input class="button" type="submit">';
-            echo '</form><br>';
+            <br><br><br><br><br><br>
+            <form action="CodesLawSiteOptions.php" method="post">
+            <label>Email: <input class="margin text" type="text" name="email"></label><br><br>
+            <label>Password: <input class="margin text" type="text" name="password"></label><br><br>
+            <input class="button" type="submit">
+            </form><br>
         </div>
+        <button class="border button" onclick="location.href='CodesLawSite.php'">Back</button>
 
     </div>
 </div>

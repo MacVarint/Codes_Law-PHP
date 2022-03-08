@@ -6,7 +6,7 @@
 <body>
 <div class="centerChild">
     <div class="center">
-        <button class="border button" onclick="location.href='CodesLawSiteBridge.php'">Login</button>
+        <button class="border button" onclick="location.href='CodesLawSiteOptions.php'">Back</button>
         <form action=""></form>
     </div>
 </div>
