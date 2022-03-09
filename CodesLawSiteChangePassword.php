@@ -11,7 +11,7 @@ session_start();
     <div class="center">
         <div class="center center2">
             <br><br><br><br><br><br>
-            <form action="checkLogin.php" method="post">
+            <form action="checkPassword.php" method="post">
                 <label>Password: <input minlength="8" class="margin text" type="password" name="password"></label><br><br>
                 <label>Re-enter Password: <input minlength="8" class="margin text" type="password" name="rePassword"></label><br><br>
                 <input class="button" type="submit">

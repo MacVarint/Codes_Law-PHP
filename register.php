@@ -19,8 +19,7 @@ $nameCheck = $conn->query('SELECT * FROM accounts WHERE Name = "' . $name . '";'
 
 $mailCheck = $conn->query('SELECT * FROM accounts WHERE EMail = "' . $email . '";');
 
-if ($nameCheck->rowCount() == 0 and $mailCheck->rowCount() == 0)
-{
+if ($nameCheck->rowCount() == 0 and $mailCheck->rowCount() == 0) {
 //        $conn->query('INSERT INTO accounts (Name, hash, Email)
 //        VALUES ("' . $_POST["name"] . '", "' . $_POST["password"] . '", "' . $_POST["eMail"] . '");');
     $salt = "\$5\$rounds=5000\$" . "MarcIsMarc" . $name . "\$";
@@ -33,12 +32,12 @@ if ($nameCheck->rowCount() == 0 and $mailCheck->rowCount() == 0)
         "Email"
     ];
     $stmt = $conn->prepare("INSERT INTO accounts (" . implode(', ', $columns) . ") VALUES (:firstValue, :secondValue, :thirdValue, :fourthValue)") or die("Error preparing.");
-        $stmt->execute([
-            ":firstValue" => $name,
-            ":secondValue" => $hash,
-            ":thirdValue" => $salt,
-            ":fourthValue" => $email
-        ]) or die ("Error executing. " . $stmt->errorCode());
+    $stmt->execute([
+        ":firstValue" => $name,
+        ":secondValue" => $hash,
+        ":thirdValue" => $salt,
+        ":fourthValue" => $email
+    ]) or die ("Error executing. " . $stmt->errorCode());
 
 }
 ?>

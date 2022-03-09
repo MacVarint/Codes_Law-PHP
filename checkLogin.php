@@ -21,10 +21,6 @@ foreach ($saltQuery as $row)
 }
 $currentHash = crypt($password, $salt);
 
-
-
-
-
 $loginCheck = $conn->query('SELECT * FROM accounts  WHERE hash = "' . $currentHash . '" AND Email = "' . $email . '";');
 
 //Checks if there are any results in the database.
@@ -39,9 +35,9 @@ if ($loginCheck->rowCount() == 1)
         echo $row['idaccount'];
         $_SESSION["userId"] = $row['idaccount'];
     }
+    header("Location: CodesLawSiteOptions.php");
 }else{
     //If there are no results, print 'PASS' in the console.
-    echo "PASS";
+    echo "the password or e-mail is incorrect ";
 }
-header("Location: CodesLawSiteOptions.php");
 ?>
