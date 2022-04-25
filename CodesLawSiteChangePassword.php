@@ -12,8 +12,10 @@ session_start();
         <div class="center center2">
             <br><br><br><br><br><br>
             <form action="checkPassword.php" method="post">
-                <label>Password: <input minlength="8" class="margin text" type="password" name="password"></label><br><br>
-                <label>Re-enter Password: <input minlength="8" class="margin text" type="password" name="rePassword"></label><br><br>
+                <label for="password">Password: </label>
+                <input minlength="8" class="margin text" type="password" id="password" name="password"><br><br>
+                <label for="rePassword">Re-enter Password: </label>
+                <input minlength="8" class="margin text" type="password" id="rePassword" name="rePassword"><br><br>
                 <input class="button" type="submit">
             </form><br>
         </div>
