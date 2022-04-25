@@ -1,7 +1,7 @@
 body, input, button {
     background-color: black;
 }
-input, th , td, p, button {
+input, th , td, p, button, label {
     color: #1AFF00;
 }
 p {

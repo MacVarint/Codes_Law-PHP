@@ -1,5 +1,7 @@
 <?php
 session_start();
+include_once "DatabaseCredentials.php";
+/** @var $conn */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +12,26 @@ session_start();
 </head>
 <body>
 <div id="floatRight">
+    <?php
+    if (isset($_SESSION["userId"]))
+    {
+        $stmt = $conn->prepare('SELECT Name FROM accounts WHERE idaccount = ' . $_SESSION["userId"] . ';');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        foreach ($result as $row)
+        {
+            echo "<label>Welcome " . $row[0] . "</label>";
+        }
+    }
+    else
+    {
+        echo "<label>Not logged in</label>";
+    }
+    ?>
     <button class="border button" onclick="location.href='CodesLawSiteBridge.php'">Login</button>
 </div>
 <div id="floatLeft">
 <?php
-include_once "DatabaseCredentials.php";
-/** @var $conn */
 $search = "";
 if (!isset($_POST['name']) && !isset($_POST['level']))
 {
@@ -62,7 +78,7 @@ else if ($_POST['level'] != "")
 }
 echo '<form action="CodesLawSite.php" method="post">';
 echo '<p>Name: </p><input class="margin" type="text" name="name" value= "' . $_POST["name"] . '"><br><br>';
-echo '<p>Level: </p><input class="margin" type="text" name="level" value= "' . $_POST["level"] . '"><br><br>';
+echo '<p>Level: </p><input class="margin" type="number" name="level" value= "' . $_POST["level"] . '"><br><br>';
 echo '<input class="button" type="submit">';
 echo '</form><br>';
 echo "<table class='border'>";

@@ -35,7 +35,7 @@ if ($loginCheck->rowCount() == 1)
         echo $row['idaccount'];
         $_SESSION["userId"] = $row['idaccount'];
     }
-    header("Location: CodesLawSiteOptions.php");
+    header("Location: CodesLawSite.php");
 }else{
     //If there are no results, print 'PASS' in the console.
     echo "the password or e-mail is incorrect ";
