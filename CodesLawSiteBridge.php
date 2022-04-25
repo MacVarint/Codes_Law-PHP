@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (isset($_SESSION["userId"])) {
+    header('Location: CodesLawSiteOptions.php');
+}
+?>
 <head>
     <meta charset="UTF-8">
     <title>Codes Law Leaderboard</title>

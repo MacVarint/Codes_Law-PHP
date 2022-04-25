@@ -14,17 +14,27 @@ if ($password === $rePassword) {
     }
     $currentHash = crypt($password, $salt);
 
-    $idUser = $conn->query('SELECT idaccount FROM accounts WHERE idaccount = "' . $userId . '";');
+    $stmt = $conn->prepare('SELECT idaccount FROM accounts WHERE idaccount = "' . $userId . '";');
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
     //Checks if there are any results in the database.
-    if ($idUser->rowCount() == 1) {
-        $conn->query('INSERT INTO accounts (hash) VALUES (' . $currentHash . ') WHERE idaccount = "' . $userId . '"');
-        echo "Password changed";
-        header("Location: CodesLawSite.php");
+    if (count($result) == 1) {
+        $stmt = $conn->prepare('UPDATE accounts SET hash = "' . $currentHash . '" WHERE idaccount = "' . $userId . '"');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        header("Location: CodeslawSite.php");
     } else {
         echo "Something went wrong";
     }
 } else {
     echo "passwords don't match";
+}
+
+function JSC($input){
+    echo "<pre>";
+    print_r($input);
+    echo "</pre>";
 }
 ?>
 

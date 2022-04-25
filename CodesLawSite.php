@@ -9,6 +9,9 @@ session_start();
     <link rel="stylesheet" href="Style%20Leaderboard.css">
 </head>
 <body>
+<div id="floatRight">
+    <button class="border button" onclick="location.href='CodesLawSiteBridge.php'">Login</button>
+</div>
 <div id="floatLeft">
 <?php
 include_once "DatabaseCredentials.php";
@@ -88,8 +91,5 @@ echo "</table>";
 unset($_POST);
 $_POST = array();
 ?>
-</div>
-<div id="floatRight">
-    <button class="border button" onclick="location.href='CodesLawSiteBridge.php'">Login</button>
 </div>
 </body>

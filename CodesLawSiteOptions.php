@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 ?>
 <head>
     <meta charset="UTF-8">
@@ -10,7 +12,8 @@ session_start();
 <div class="centerChild">
     <div class="center">
         <button class="border button" onclick="location.href='CodesLawSiteChangePassword.php'">Change password</button>
-        <button class="border button bottom" onclick="location.href='CodesLawSiteBridge.php'">Back</button>
+        <button class="border button" onclick="location.href='CodesLawSiteLogout.php'">Logout</button>
+        <button class="border button bottom" onclick="location.href='CodesLawSite.php'">Back</button>
     </div>
 </div>
 </body>
